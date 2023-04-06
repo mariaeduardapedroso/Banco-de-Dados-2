@@ -17,9 +17,9 @@
     consultas que produzem poucos dados e podem ser processados por etapas.
 
   b) Qual dos SGBDs analisados tem mecanismos de avaliações mais fracos, justifique
+PostGree
 
-
-2) Sobre o Processo de Otimização: 
+2) Sobre o Processo de Otimização:  - reescrita de consulta personalização
   a) Entre os SGBDs analisados, qual tem maior destaque e porque:
 
   b) Qual dos SGBDs tem menor documentação sobre os processos de otimização.
@@ -70,5 +70,5 @@
       WHERE condition;
     É importante lembrar que o uso excessivo de hints pode levar a resultados imprevisíveis e tornar a manutenção do código SQL mais difícil. 
     Portanto, é recomendável usar hints com moderação e apenas quando for realmente necessário.
-3) Sobre algoritmos de acesso aos dados: 
+3) Sobre algoritmos de acesso aos dados:  HASH JOIN E OS ACESSO aos dados
 a) Entre os SGBDs analisados, qual tem maior destaque, justifique?

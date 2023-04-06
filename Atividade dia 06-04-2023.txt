@@ -1,0 +1,74 @@
+# 1 ) Sobre os Mecanismos de avaliação de expressões complexas: 
+  a) Pesquisa a diferença entre Pipelining demand-driven e Pipelining producen-driven.
+    Em bancos de dados, o pipelining demand-driven e o pipelining produce-driven são duas técnicas 
+    diferentes de otimização de consultas que visam melhorar o desempenho do processamento de consultas em bancos de dados.
+    O pipelining demand-driven é uma técnica em que os dados são processados continuamente, ou seja, 
+    à medida que eles são produzidos pelo banco de dados. Nessa abordagem, a consulta é executada em etapas,
+    e cada etapa é iniciada somente após a conclusão da etapa anterior. Isso significa que o resultado da etapa 
+    anterior é enviado diretamente para a etapa seguinte, sem a necessidade de armazená-lo em memória ou disco. 
+    Dessa forma, essa abordagem é útil quando a consulta está produzindo muitos dados e é necessário processá-los continuamente.
+    Já o pipelining produce-driven é uma técnica em que as etapas do pipeline só são iniciadas quando há dados 
+    disponíveis para serem processados. Nessa abordagem, a consulta é dividida em etapas, e cada etapa é iniciada 
+    somente quando a etapa anterior produz os dados necessários para a etapa seguinte. Isso significa que os dados são
+    armazenados em memória ou disco, o que pode levar a um tempo de resposta mais lento em comparação com o pipelining demand-driven.
+    No entanto, essa abordagem pode ser mais eficiente em consultas que produzem poucos dados.
+    Em resumo, a principal diferença entre pipelining demand-driven e pipelining produce-driven em bancos de dados é que o primeiro é mais 
+    adequado para consultas que produzem muitos dados e precisam ser processados continuamente, enquanto o segundo é mais adequado para
+    consultas que produzem poucos dados e podem ser processados por etapas.
+
+  b) Qual dos SGBDs analisados tem mecanismos de avaliações mais fracos, justifique
+
+
+2) Sobre o Processo de Otimização: 
+  a) Entre os SGBDs analisados, qual tem maior destaque e porque:
+
+  b) Qual dos SGBDs tem menor documentação sobre os processos de otimização.
+
+  c) Sobre o quesito personalização, qual dos SGBDs se destacam mais e porque. 
+    Em termos de personalização, o Oracle é frequentemente considerado um dos SGBDs mais avançados, 
+    com uma ampla variedade de recursos e opções que permitem ajustar finamente o desempenho do banco de dados. 
+    O Oracle oferece ferramentas como o Oracle Enterprise Manager, que inclui recursos de ajuste automático e um assistente 
+    de ajuste que pode recomendar configurações de banco de dados com base em análises de desempenho.
+    Além disso, o Oracle tem um recurso de planos de execução personalizados, que permite que os desenvolvedores 
+    criem e gerenciem planos de execução específicos para consultas individuais. Isso permite que os desenvolvedores 
+    criem planos de execução personalizados para consultas complexas ou com requisitos de desempenho específicos, 
+    permitindo que o banco de dados escolha automaticamente o plano mais eficiente para cada consulta.
+
+  d) Sobre o quesito personalização, pesquise e defina o que é Hint, com Exemplos.
+    No contexto de otimização de consultas em bancos de dados, um hint (dica, em tradução livre) é uma instrução opcional 
+    que um desenvolvedor pode incluir em uma consulta SQL para fornecer ao otimizador do banco de dados informações adicionais sobre como executar a consulta.
+    Os hints são usados para personalizar a maneira como o otimizador do banco de dados avalia e executa uma consulta, permitindo que o desenvolvedor 
+    especifique manualmente o plano de execução que deve ser usado. Isso pode ser útil quando o otimizador do banco de dados não está escolhendo o 
+    plano de execução mais eficiente para uma determinada consulta.
+    A sintaxe e a semântica dos hints podem variar dependendo do SGBD, mas geralmente são escritos como comentários incorporados no código SQL. 
+    Por exemplo, no Oracle Database, um hint pode ser especificado usando o seguinte formato:
+
+      SELECT /*+ hint_name(hint_arguments) */ column1, column2
+      FROM table_name
+      WHERE condition;
+
+    Aqui, "hint_name" é o nome do hint e "hint_arguments" são os argumentos opcionais que podem ser passados para o hint. 
+    O hint é incorporado na consulta como um comentário, o que significa que ele é ignorado pelo interpretador SQL, mas ainda pode ser 
+    lido e interpretado pelo otimizador do banco de dados.
+
+    Abaixo, apresentamos alguns exemplos de hints comuns usados em consultas SQL:
+
+    Index hint: especifica que um índice específico deve ser usado para executar a consulta.
+
+      SELECT /*+ index(table_name index_name) */ column1, column2
+      FROM table_name
+      WHERE condition;
+
+    Join hint: especifica a ordem em que as tabelas devem ser unidas para executar uma consulta que envolve várias tabelas.
+      SELECT /*+ ordered */ column1, column2
+      FROM table1, table2
+      WHERE table1.id = table2.id;
+
+    Full hint: instrui o otimizador a usar uma determinada estratégia de junção para executar uma consulta.
+      SELECT /*+ full(table_name) */ column1, column2
+      FROM table_name
+      WHERE condition;
+    É importante lembrar que o uso excessivo de hints pode levar a resultados imprevisíveis e tornar a manutenção do código SQL mais difícil. 
+    Portanto, é recomendável usar hints com moderação e apenas quando for realmente necessário.
+3) Sobre algoritmos de acesso aos dados: 
+a) Entre os SGBDs analisados, qual tem maior destaque, justifique?

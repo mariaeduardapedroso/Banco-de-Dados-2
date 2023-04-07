@@ -1,4 +1,4 @@
-# 1 ) Sobre os Mecanismos de avaliação de expressões complexas: 
+1) Sobre os Mecanismos de avaliação de expressões complexas: 
   a) Pesquisa a diferença entre Pipelining demand-driven e Pipelining producen-driven.
     Em bancos de dados, o pipelining demand-driven e o pipelining produce-driven são duas técnicas 
     diferentes de otimização de consultas que visam melhorar o desempenho do processamento de consultas em bancos de dados.
@@ -17,13 +17,15 @@
     consultas que produzem poucos dados e podem ser processados por etapas.
 
   b) Qual dos SGBDs analisados tem mecanismos de avaliações mais fracos, justifique
-PostGree
+    PostGree pois dentre os tres é o que menos tem funcionalidades
 
 2) Sobre o Processo de Otimização:  - reescrita de consulta personalização
   a) Entre os SGBDs analisados, qual tem maior destaque e porque:
+    PostGree pois dentre os tres é o que mais tem funcionalidades
 
   b) Qual dos SGBDs tem menor documentação sobre os processos de otimização.
-
+    Oracle, pois não foi encontrado informaçoes suficientemente detalhadas.
+    
   c) Sobre o quesito personalização, qual dos SGBDs se destacam mais e porque. 
     Em termos de personalização, o Oracle é frequentemente considerado um dos SGBDs mais avançados, 
     com uma ampla variedade de recursos e opções que permitem ajustar finamente o desempenho do banco de dados. 
@@ -70,5 +72,27 @@ PostGree
       WHERE condition;
     É importante lembrar que o uso excessivo de hints pode levar a resultados imprevisíveis e tornar a manutenção do código SQL mais difícil. 
     Portanto, é recomendável usar hints com moderação e apenas quando for realmente necessário.
+    
 3) Sobre algoritmos de acesso aos dados:  HASH JOIN E OS ACESSO aos dados
-a) Entre os SGBDs analisados, qual tem maior destaque, justifique?
+  a) Entre os SGBDs analisados, qual tem maior destaque, justifique?
+    PostGree pois dentre os tres é o que mais tem funcionalidades
+
+4) Sobre o método: Index unique scan , descreva restrições sobre esse método. 
+  O método "Index Unique Scan" é usado em bancos de dados para recuperar linhas de uma tabela usando um índice exclusivo. 
+  Esse método é geralmente mais eficiente do que uma pesquisa de tabela completa, pois pode acessar diretamente as linhas desejadas por meio do índice exclusivo.
+  Algumas das restrições sobre o uso do método "Index Unique Scan" incluem:
+  Índice exclusivo: o índice deve ser exclusivo para garantir que apenas uma linha seja retornada. Se o índice não for exclusivo,
+  o método "Index Unique Scan" não poderá ser usado.
+  Seleção de colunas: o método "Index Unique Scan" só pode ser usado para recuperar linhas com base em valores de colunas incluídas no índice.
+  Se a consulta envolver outras colunas, o método "Index Unique Scan" não poderá ser usado.
+  Ordem de classificação: o método "Index Unique Scan" pode ser usado apenas se as colunas de índice estiverem na mesma ordem de 
+  classificação que a cláusula ORDER BY da consulta.
+  Densidade de chave: a eficiência do método "Index Unique Scan" depende da densidade de chave no índice. Se a densidade de chave for muito baixa, 
+  o método pode não ser eficiente.
+  Estatísticas de índice: o otimizador de consulta usa estatísticas de índice para determinar se o método "Index Unique Scan" é a melhor opção. 
+  Se as estatísticas de índice estiverem desatualizadas ou não forem precisas, o otimizador pode escolher um método menos eficiente.
+  É importante lembrar que essas restrições podem variar dependendo do sistema de gerenciamento de banco de dados específico e da versão em uso.
+
+5) Quais as diferenças entre o método  Index unique scan e Index Range Scan
+  Em resumo, o método "Index Unique Scan" é usado para localizar uma única linha usando um índice exclusivo, 
+  enquanto o método "Index Range Scan" é usado para localizar um conjunto de linhas usando um índice que inclui uma faixa de valores.

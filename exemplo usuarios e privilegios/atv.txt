@@ -1,0 +1,29 @@
+sudo su - postgres
+
+postgres@pxe-ubuntu:~$ psql
+psql (15.1 (Ubuntu 15.1-1.pgdg22.04+1))
+Type "help" for help.
+
+postgres=# create user a1 encrypted password '123';
+CREATE ROLE
+postgres=# create user a2 encrypted password '123';
+CREATE ROLE
+postgres=# create user a3 encrypted password '123';
+CREATE ROLE
+postgres=# create user a4 encrypted password '123';
+CREATE ROLE
+
+postgres=# create database curso_bd2;
+CREATE DATABASE
+
+postgres=# grant create on database curso_bd2 to a1;
+GRANT
+
+----pgadmin
+-addnew server
+-name seu nome
+-conections
+-local localhost
+-user a1
+
+

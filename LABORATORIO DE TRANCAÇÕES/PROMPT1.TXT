@@ -1,0 +1,76 @@
+postgres=# create database servico
+postgres-# ;
+CREATE DATABASE
+postgres=# \c servico;
+You are now connected to database "servico" as user "postgres".
+servico=# create table aluno (id serial primary key, nome varchar(50));
+CREATE TABLE
+servico=# INSERT into aluno (nome) values ('Huguinho'), ('Zezinho'), ('Luisinho'), ('Juquinha'),
+('Joaozinho');
+INSERT 0 5
+servico=# begin;
+BEGIN
+servico=*# UPDATE aluno set nome = 'Jose da Silva' where id = 2;
+UPDATE 1
+servico=*# select * from aluno;
+ id |     nome      
+----+---------------
+  1 | Huguinho
+  3 | Luisinho
+  4 | Juquinha
+  5 | Joaozinho
+  2 | Jose da Silva
+(5 rows)
+
+servico=*# rollback;
+ROLLBACK
+servico=# select * from aluno;
+ id |   nome    
+----+-----------
+  1 | Huguinho
+  2 | Zezinho
+  3 | Luisinho
+  4 | Juquinha
+  5 | Joaozinho
+(5 rows)
+
+servico=# --UNREPEATABLE READS
+servico=# BEGIN;
+BEGIN
+servico=*# UPDATE aluno set nome = 'Jose da Silva' where id = 2;
+UPDATE 1
+servico=*# ROLLBACK;
+ROLLBACK
+servico=# BEGIN;
+BEGIN
+servico=*# UPDATE aluno set nome = 'Jose da Silva' where id = 2;
+UPDATE 1
+servico=*# select * from aluno;
+ id |     nome      
+----+---------------
+  1 | Huguinho
+  3 | Luisinho
+  4 | Juquinha
+  5 | Joaozinho
+  2 | Jose da Silva
+(5 rows)
+
+servico=*# COMMIT;
+COMMIT
+servico=# select * from aluno;
+ id |     nome      
+----+---------------
+  1 | Huguinho
+  3 | Luisinho
+  4 | Juquinha
+  5 | Joaozinho
+  2 | Jose da Silva
+(5 rows)
+
+servico=# --PHANTOM READ
+servico=# BEGIN;
+BEGIN
+servico=*# INSERT INTO aluno (nome) values ('Chiquinha'), ('Mariazinha');
+INSERT 0 2
+servico=*# COMMIT;
+COMMIT

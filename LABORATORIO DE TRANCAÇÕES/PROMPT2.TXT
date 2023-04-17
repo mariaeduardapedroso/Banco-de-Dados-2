@@ -1,0 +1,81 @@
+postgres=# /c servico
+postgres-# ;
+ERROR:  syntax error at or near "/"
+LINE 1: /c servico
+        ^
+postgres=# \c servico;
+You are now connected to database "servico" as user "postgres".
+servico=# begin;
+BEGIN
+servico=*# select * from aluno;
+ id |   nome    
+----+-----------
+  1 | Huguinho
+  2 | Zezinho
+  3 | Luisinho
+  4 | Juquinha
+  5 | Joaozinho
+(5 rows)
+
+servico=*# commit;
+COMMIT
+servico=# select * from aluno;
+ id |   nome    
+----+-----------
+  1 | Huguinho
+  2 | Zezinho
+  3 | Luisinho
+  4 | Juquinha
+  5 | Joaozinho
+(5 rows)
+
+servico=# --UNREAPTABLE READS
+servico=# BEGIN;
+BEGIN
+servico=*# select * from aluno;
+ id |   nome    
+----+-----------
+  1 | Huguinho
+  2 | Zezinho
+  3 | Luisinho
+  4 | Juquinha
+  5 | Joaozinho
+(5 rows)
+
+servico=*# select * from aluno;
+ id |     nome      
+----+---------------
+  1 | Huguinho
+  3 | Luisinho
+  4 | Juquinha
+  5 | Joaozinho
+  2 | Jose da Silva
+(5 rows)
+
+servico=*# --PHANTOM READ
+servico=*# COMMIT;
+COMMIT
+servico=# BEGIN;
+BEGIN
+servico=*# select * from aluno;
+ id |     nome      
+----+---------------
+  1 | Huguinho
+  3 | Luisinho
+  4 | Juquinha
+  5 | Joaozinho
+  2 | Jose da Silva
+(5 rows)
+
+servico=*# select * from aluno;
+ id |     nome      
+----+---------------
+  1 | Huguinho
+  3 | Luisinho
+  4 | Juquinha
+  5 | Joaozinho
+  2 | Jose da Silva
+  6 | Chiquinha
+  7 | Mariazinha
+(7 rows)
+

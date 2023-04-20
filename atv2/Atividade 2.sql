@@ -1,8 +1,8 @@
--- Database: empresa
+-- Database: anotherDB
 
--- DROP DATABASE IF EXISTS empresa;
+-- DROP DATABASE IF EXISTS "anotherDB";
 
-CREATE DATABASE empresa
+CREATE DATABASE "anotherDB"
     WITH
     OWNER = postgres
     ENCODING = 'UTF8'
@@ -12,10 +12,6 @@ CREATE DATABASE empresa
     CONNECTION LIMIT = -1
     IS_TEMPLATE = False;
 	
-	-- CRIAR BANCO DE DADOS COM USUARIO POSTGREE
--- create database atividade2;
---------------------------------------------
-
 -- CRIAR TABELAS COM USUARIO POSTGREE
 CREATE TABLE empregado (
 	SSN  int PRIMARY KEY
@@ -74,11 +70,11 @@ ALTER TABLE trabalha_em
 ADD CONSTRAINT dependente FOREIGN KEY (essn) REFERENCES empregado(ssn);
 --------------------------------------------
 --INSERIR DADOS NAS TABELAS 
-INSERT INTO empregado (SSN, pnome, minicial, unome, datanasc, endereco, sexo, salario, superssn, dno) VALUES (123456789, 'João', 'A', 'Silva', '1990-01-01', 'Rua A, 123', 'M', 3000, NULL, 1);
-INSERT INTO empregado (SSN, pnome, minicial, unome, datanasc, endereco, sexo, salario, superssn, dno) VALUES (987654321, 'Maria', 'B', 'Santos', '1985-05-10', 'Rua B, 456', 'F', 2500, 123456789, 1);
-INSERT INTO empregado (SSN, pnome, minicial, unome, datanasc, endereco, sexo, salario, superssn, dno) VALUES (345678901, 'Pedro', 'C', 'Oliveira', '1992-11-20', 'Rua C, 789', 'M', 2800, 123456789, 2);
-INSERT INTO empregado (SSN, pnome, minicial, unome, datanasc, endereco, sexo, salario, superssn, dno) VALUES (111111111, 'Ana', 'D', 'Costa', '1989-03-15', 'Rua D, 321', 'F', 3500, 123456789, 2);
-INSERT INTO empregado (SSN, pnome, minicial, unome, datanasc, endereco, sexo, salario, superssn, dno) VALUES (222222222, 'Lucas', 'E', 'Rodrigues', '1988-07-22', 'Rua E, 654', 'M', 3200, 234567890, 1);
+INSERT INTO empregado (SSN, pnome, minicial, unome, datanasc, endereco, sexo, salario, superssn, dno) VALUES (123456789, 'João', 'A', 1, '1990-01-01', 'Rua A, 123', 'M', 3000, NULL, 1);
+INSERT INTO empregado (SSN, pnome, minicial, unome, datanasc, endereco, sexo, salario, superssn, dno) VALUES (987654321, 'Maria', 'B', 2, '1985-05-10', 'Rua B, 456', 'F', 2500, 123456789, 1);
+INSERT INTO empregado (SSN, pnome, minicial, unome, datanasc, endereco, sexo, salario, superssn, dno) VALUES (345678901, 'Pedro', 'C', 3, '1992-11-20', 'Rua C, 789', 'M', 2800, 123456789, 2);
+INSERT INTO empregado (SSN, pnome, minicial, unome, datanasc, endereco, sexo, salario, superssn, dno) VALUES (111111111, 'Ana', 'D', 4, '1989-03-15', 'Rua D, 321', 'F', 3500, 123456789, 2);
+INSERT INTO empregado (SSN, pnome, minicial, unome, datanasc, endereco, sexo, salario, superssn, dno) VALUES (222222222, 'Lucas', 'E', 5, '1988-07-22', 'Rua E, 654', 'M', 3200, 234567890, 1);
 
 INSERT INTO departamento (dnumero, dnome, gerssn, gerdatainicio) VALUES (1, 'Vendas', 123456789, '2019-01-01');
 INSERT INTO departamento (dnumero, dnome, gerssn, gerdatainicio) VALUES (2, 'Recursos Humanos', 234567890, '2018-05-01');
@@ -99,10 +95,10 @@ INSERT INTO projeto VALUES (4, 'Projeto D', 2, 'Brasília');
 INSERT INTO projeto VALUES (5, 'Projeto E', 3, 'Curitiba');
 
 INSERT INTO trabalha_em VALUES (1, 123456789, '08:00:00');
-INSERT INTO trabalha_em VALUES (1, 987654321, '06:00:00');
-INSERT INTO trabalha_em VALUES (2, 123456789, '09:00:00');
-INSERT INTO trabalha_em VALUES (3, 111111111, '07:00:00');
-INSERT INTO trabalha_em VALUES (4, 222222222, '08:30:00');
+INSERT INTO trabalha_em VALUES (2, 987654321, '06:00:00');
+INSERT INTO trabalha_em VALUES (3, 123456789, '09:00:00');
+INSERT INTO trabalha_em VALUES (4, 111111111, '07:00:00');
+INSERT INTO trabalha_em VALUES (5, 222222222, '08:30:00');
 
 INSERT INTO dependente VALUES (123456789, 'João', '2005-05-20', 'Filho', 'M');
 INSERT INTO dependente VALUES (123456789, 'Maria', '2010-09-15', 'Filha', 'F');

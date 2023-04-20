@@ -1,0 +1,13 @@
+Cada equipe (com mínimo de 1 e máximo de 4 integrantes) deverá :
+
+1) Escolher um SGBD entre esses: PostgreSQL, MySQL, Sql Server, Oracle ou IBM DB2. Avisar o professor na aula do dia 17/04 qual SGBD escolheu
+
+2) Descrever um exemplo de como é possível fazer um ataque de SQL INJECTION neste SGBD.
+
+3) Mostrar uma forma de se proteger do problema reportado na sessão anterior.
+
+
+
+- Fazer um documento Texto e fazer Upload deste documento nesta atividade. 
+
+- Apresentar (mínimo 4 minutos e máximo de 10 minutos para os demais).

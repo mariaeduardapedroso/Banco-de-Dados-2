@@ -1,0 +1,85 @@
+Capítulo 15 - Processamento de Consultas
+PARTE A - Resumo
+
+15.1 Visão geral
+O capítulo 15 apresenta os principais conceitos e técnicas envolvidos no processamento de consultas em bancos de dados. 
+O processamento de consultas envolve a tradução da consulta do usuário em uma série de operações que serão executadas no 
+banco de dados para produzir o resultado da consulta. O objetivo é encontrar um plano de execução eficiente que minimize o 
+custo de processamento da consulta.
+
+15.2 Medidas de custo da consulta
+As medidas de custo da consulta são usadas para avaliar a eficiência do processamento de uma consulta. O número de páginas de 
+disco acessadas é uma medida importante, pois o acesso ao disco é geralmente a operação mais lenta em um sistema de banco de dados. 
+Além disso, o número de operações de E/S (entrada/saída) realizadas e o tempo de resposta da consulta também são medidas importantes. 
+O custo total de uma consulta é a soma dessas medidas.
+
+15.3 Operação de seleção
+A operação de seleção é usada para recuperar tuplas de uma tabela que satisfazem uma condição especificada. Existem diversas técnicas
+para processar essa operação. Uma técnica simples é a busca sequencial, que percorre a tabela linearmente e verifica cada tupla em busca
+daquelas que atendem à condição. Essa técnica é adequada para tabelas pequenas, mas é ineficiente para tabelas grandes. Outra técnica é a
+busca binária, que é usada quando a tabela está ordenada. Se a tabela estiver indexada, o processamento da seleção pode ser feito de forma 
+mais eficiente usando a árvore B+.
+
+15.4 Classificação (sorting)
+A classificação é usada para ordenar as tuplas de uma tabela de acordo com um ou mais atributos especificados. Existem diversas técnicas para
+processar essa operação. Uma técnica simples é a ordenação em memória, que é adequada para tabelas pequenas. Para tabelas grandes, é 
+necessário usar algoritmos de ordenação externa, que permitem ordenar grandes quantidades de dados que não cabem na memória principal. 
+Um exemplo de algoritmo de ordenação externa é o merge sort, que combina múltiplos arquivos de entrada em um único arquivo de saída ordenado.
+
+15.5 Operação de junção (join)
+A operação de junção é usada para combinar tuplas de duas ou mais tabelas que satisfazem uma condição de junção especificada. 
+Existem diversas técnicas para processar essa operação. A técnica mais simples é a junção aninhada, que combina todas as tuplas de 
+uma tabela com todas as tuplas de outra tabela e verifica qual delas atende à condição de junção. Essa técnica é ineficiente para tabelas 
+grandes. Para tabelas grandes, é necessário usar técnicas mais sofisticadas, como a junção por ordenação e a junção por hash. Na junção por 
+ordenação, as tabelas são ordenadas pelos atributos de junção antes da execução da operação de junção. Na junção por hash, as tuplas das 
+tabelas são particionadas em subconjuntos com base nos valores dos atributos de junção e depois combinadas em um processo de hash.
+
+15.6 Outras operações
+Além das operações de seleção, classificação e junção, existem outras operações que podem ser processadas pelo sistema de banco de dados, 
+como projeção, união, intersecção, diferença, agrupamento e agregação. A projeção é usada para recuperar apenas os atributos desejados de
+uma tabela, enquanto a união combina tuplas de duas tabelas em uma única tabela. A intersecção retorna apenas as tuplas que estão presentes 
+em ambas as tabelas, enquanto a diferença retorna as tuplas que estão presentes em uma tabela e não na outra. O agrupamento é usado para 
+agrupar as tuplas de uma tabela de acordo com um ou mais atributos especificados. A agregação é usada para calcular uma função de agregação,
+como soma, média ou contagem, para cada grupo de tuplas.
+
+15.7 Avaliação de expressões
+A avaliação de expressões é um processo que envolve a avaliação de uma expressão que contém operadores, operandos e funções. As expressões
+podem ser usadas em consultas, restrições de integridade e em outras partes do sistema de banco de dados. O processo de avaliação de expressões 
+envolve a aplicação de operadores aos operandos e a aplicação de funções aos resultados. As expressões podem ser avaliadas usando uma abordagem
+de avaliação por árvore, que envolve a construção de uma árvore de avaliação a partir da expressão e a avaliação da árvore de baixo para cima. 
+Outra abordagem é a avaliação direta, que envolve a avaliação da expressão em uma única passagem.
+
+PARTE B - QUESTIONÁRIO 
+
+Exercício 15.9:
+Qual é o efeito sobre o custo da mesclagem de rodadas se o número de blocos de buffer por rodada for aumentado, mantendo-se fixa a memória geral 
+disponível para o buffer das rodadas?
+
+Resposta: A mesclagem de rodadas é um processo utilizado na classificação externa de arquivos. Ele envolve a divisão de um arquivo em vários blocos 
+que são classificados em memória e, em seguida, mesclados em uma única saída classificada. O processo de mesclagem é repetido várias vezes até que 
+todos os blocos tenham sido mesclados em uma única saída classificada.
+Durante a mesclagem, os blocos são lidos do disco e colocados em um buffer de memória. O tamanho do buffer é limitado e determinado pela quantidade 
+de memória disponível para o processo de classificação externa. Quanto maior o número de blocos de buffer por rodada, mais blocos podem ser lidos e 
+mantidos na memória durante a mesclagem. Isso significa que menos leituras do disco serão necessárias para concluir cada rodada de mesclagem, 
+reduzindo o tempo total de processamento e, consequentemente, o custo.
+No entanto, o aumento do número de blocos de buffer por rodada também pode levar a um aumento do custo devido à necessidade de um buffer maior. 
+Além disso, o número máximo de blocos de buffer por rodada é limitado pela quantidade de memória disponível para o processo de classificação externa. 
+Portanto, é importante encontrar um equilíbrio entre o número de blocos de buffer por rodada e a quantidade total de memória disponível para garantir 
+um desempenho ótimo da classificação externa.
+
+Exercício 15.11:
+Suponha que uma consulta recupere apenas os primeiros K resultados de uma operação e termine depois disso. Qual escolha dentre a canalização controlada 
+por demanda ou por produtor (com o uso de buffer) seria melhor para essa consulta? Explique sua resposta
+
+Resposta: Se o número de resultados K for pequeno, a canalização controlada por demanda seria a melhor escolha. Isso ocorre porque a canalização controlada 
+por demanda envolve a produção de resultados sob demanda, em vez de produzir todos os resultados e depois consumi-los. Essa abordagem economiza tempo e 
+memória, pois não é necessário produzir e armazenar todos os resultados. A consulta pode ser interrompida assim que o número necessário de resultados for 
+produzido, sem a necessidade de esperar até que todos os resultados sejam produzidos e armazenados.
+
+Por outro lado, se o número de resultados K for grande e o buffer disponível for limitado, a canalização por produtor com uso de buffer pode ser mais eficiente.
+Nesse caso, os resultados são produzidos pelo produtor e armazenados no buffer, permitindo que a consulta acesse os resultados de maneira mais rápida e eficiente.
+O uso de um buffer também pode ajudar a reduzir o número de leituras e gravações no disco, melhorando o desempenho geral da consulta.
+
+Em resumo, a escolha entre a canalização controlada por demanda ou por produtor com uso de buffer dependerá do número de resultados K e do tamanho do buffer 
+disponível. Se K for pequeno, a canalização controlada por demanda é a melhor escolha. No entanto, se K for grande e o buffer disponível for limitado, a canalização 
+por produtor com uso de buffer pode ser mais eficiente.

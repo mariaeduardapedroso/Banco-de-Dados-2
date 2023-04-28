@@ -75,11 +75,9 @@ Resposta: Se o número de resultados K for pequeno, a canalização controlada p
 por demanda envolve a produção de resultados sob demanda, em vez de produzir todos os resultados e depois consumi-los. Essa abordagem economiza tempo e 
 memória, pois não é necessário produzir e armazenar todos os resultados. A consulta pode ser interrompida assim que o número necessário de resultados for 
 produzido, sem a necessidade de esperar até que todos os resultados sejam produzidos e armazenados.
-
 Por outro lado, se o número de resultados K for grande e o buffer disponível for limitado, a canalização por produtor com uso de buffer pode ser mais eficiente.
 Nesse caso, os resultados são produzidos pelo produtor e armazenados no buffer, permitindo que a consulta acesse os resultados de maneira mais rápida e eficiente.
 O uso de um buffer também pode ajudar a reduzir o número de leituras e gravações no disco, melhorando o desempenho geral da consulta.
-
 Em resumo, a escolha entre a canalização controlada por demanda ou por produtor com uso de buffer dependerá do número de resultados K e do tamanho do buffer 
 disponível. Se K for pequeno, a canalização controlada por demanda é a melhor escolha. No entanto, se K for grande e o buffer disponível for limitado, a canalização 
 por produtor com uso de buffer pode ser mais eficiente.
